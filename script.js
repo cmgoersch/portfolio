@@ -31,7 +31,7 @@ for (let i = 0; i < 160; i++) {
       friction: 0.4, // Reibung
       render: {
         sprite: {
-          texture: 'gradient-circle.svg', // Hier die Texturdatei einfügen
+          texture: 'public/gradient-circle.svg', // Hier die Texturdatei einfügen
           xScale: 2 * (radius / 100), // Skaliert das Bild basierend auf dem Radius
           yScale: 2 * (radius / 100),
         },
@@ -53,7 +53,7 @@ const specialBall = Bodies.circle(
     friction: 0.4, // Reibung
     render: {
       sprite: {
-        texture: 'smily.png', // Spezielle Textur für diesen Ball
+        texture: 'public/smily.png', // Spezielle Textur für diesen Ball
         xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
         yScale: 2 * (specialBallRadius / 100),
       },
@@ -156,3 +156,9 @@ window.addEventListener('resize', () => {
       y: updatedRect.top + updatedRect.height / 2,
     });
   });
+
+  // Menü umschalten
+function toggleMenu() {
+    const menuItems = document.getElementById("menu-items");
+    menuItems.classList.toggle("show");
+  }

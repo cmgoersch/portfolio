@@ -9,20 +9,35 @@
 </head>
 <body>
   <div id="container">
+    <!-- Reload Icon -->
+    <div id="reload-icon">
+      <img src="public/reload.svg" alt="Reload Icon" onclick="location.reload();" />
+    </div>
+
+    <!-- Message -->
     <div id="message">
       <h1>Welcome</h1>
       <p>grab a ball and make room on the screen</p>
     </div>
+
+    <!-- Button Container -->
     <div class="button-container">
-        <div id="button-barrier"></div>
-        <button class="startButton">Enough with the balls! Let's go</button>
-      </div>
+      <div id="button-barrier"></div>
+      <button class="startButton" onclick="window.location.href='about.html'">
+        Enough with the balls! Let's go!
+      </button>
+    </div>
+
+    <!-- Canvas -->
     <canvas id="ballCanvas"></canvas>
   </div>
+
+  <!-- Introduction Section -->
   <div id="introduction">
     <h2>Über mich</h2>
     <p>Hier finden Sie Informationen zu meinem Portfolio. Scrollen Sie weiter, um mehr zu erfahren!</p>
   </div>
+  
   <script src="script.js"></script>
 </body>
 </html>

@@ -60,14 +60,13 @@ h1 {
 }
 
 .startButton {
-  padding: 10px 20px;
+  padding: 15px 20px;
   font-size: 18px;
   font-weight: bold;
   background-color: #fff;
   color: black;
-
   border: none;
-  border-radius: 5px;
+  border-radius: 1px;
   cursor: pointer;
   position: relative;
   pointer-events: auto;
