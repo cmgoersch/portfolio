@@ -10,29 +10,70 @@
   <!-- Navigation -->
   <nav>
     <div class="menu">
-      <button id="burger-menu" onclick="toggleMenu()">☰</button>
+      <button id="burger-menu" onclick="openMenu()">☰</button>
       <ul id="menu-items">
         <li><a href="index.html">Back to the balls</a></li>
         <li><a href="#about">About me</a></li>
         <li><a href="#work">My Work</a></li>
         <li><a href="#cv">Curriculum vitae</a></li>
       </ul>
+      <div id="overlay-menu">
+        <button id="close-menu" onclick="closeMenu()">✖</button>
+        <ul>
+          <li><a href="index.html" onclick="closeMenu()">Back to the balls</a></li>
+          <li><a href="#about" onclick="closeMenu()">About me</a></li>
+          <li><a href="#work" onclick="closeMenu()">My Work</a></li>
+          <li><a href="#cv" onclick="closeMenu()">Curriculum vitae</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <section id="about">
-    <h1>About Me</h1>
-    <p>Welcome to my about page! Here you can learn more about me and my journey.</p>
-  </section>
-  <section id="work">
-    <h2>My Work</h2>
-    <p>Here are some of my projects and achievements.</p>
-  </section>
-  <section id="cv">
-    <h2>Curriculum Vitae</h2>
-    <p>Here is my professional experience and skills.</p>
-  </section>
+  <div class="profile-container">
+    <header>
+      <img src="public/calle.png" alt="Profile Picture" class="profile-pic">
+      <h1>Calle</h1>
+      <p class="username">@cmgoersch · he/him</p>
+      <p class="location">Hamburg</p>
+      <a href="https://www.linkedin.com/in/carl-martin-görsch-838a8b214" target="_blank" class="linkedin">LinkedIn</a>
+    </header>
+
+    <main>
+      <section class="about" id="about">
+        <h2>Hi there 👋</h2>
+        <h3>My name is Calle 🚀</h3>
+        <p>
+          After completing my training at <strong>Neue Fische Agentur Hamburg</strong>, I fully immersed myself in the world of coding and embarked on my exciting journey as a developer. 💻
+        </p>
+        <p>
+          During my time at <strong>Neue Fische</strong>, I developed my capstone project called <a href="https://capstone-project-seven-rho.vercel.app" target="_blank">better-friend-app</a>, an app designed to help users engage with their friends in a playful and more balanced manner.
+        </p>
+        <p>
+          Since October 2024, I'm attending a <strong>Web Development course</strong> at <strong>DCI (Digital Career Institute)</strong> to deepen my skills in web development. Additionally, I've been learning <strong>Python</strong> to expand my programming knowledge. 🐍
+        </p>
+      </section>
+
+      <section class="experience" id="work">
+        <h2>My Work</h2>
+        <p>
+          Before diving into coding, I completed a <strong>Graphic Design apprenticeship (2009-2012)</strong> at the Akademie für Kommunikation in Pforzheim. With over 10 years of experience as a <strong>graphic and web designer</strong>, I specialized in UI/UX Design and creating user-centric digital experiences.
+        </p>
+        <p>
+          Currently, I channel my creativity as a graphic and screen designer for <a href="https://www.madways.de" target="_blank">Madways UG</a>, an amazing agency nestled in Karlsruhe, Germany. 🌟
+        </p>
+      </section>
+
+      <section class="tech-stack" id="cv">
+        <h2>Curriculum Vitae</h2>
+        <ul>
+          <li>HTML | CSS | JavaScript</li>
+          <li>MongoDB | React | Next.js | Python</li>
+          <li>UI/UX Design | Graphic Design</li>
+        </ul>
+      </section>
+    </main>
+  </div>
 
   <script src="about.js"></script>
 </body>

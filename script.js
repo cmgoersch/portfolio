@@ -53,7 +53,7 @@ const specialBall = Bodies.circle(
     friction: 0.4, // Reibung
     render: {
       sprite: {
-        texture: 'public/smily.png', // Spezielle Textur für diesen Ball
+        texture: 'public/smily_3.png', // Spezielle Textur für diesen Ball
         xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
         yScale: 2 * (specialBallRadius / 100),
       },
@@ -157,8 +157,4 @@ window.addEventListener('resize', () => {
     });
   });
 
-  // Menü umschalten
-function toggleMenu() {
-    const menuItems = document.getElementById("menu-items");
-    menuItems.classList.toggle("show");
-  }
+

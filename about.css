@@ -1,11 +1,24 @@
+/* Allgemeines Styling */
 body {
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
+    color: #c9d1d9;
+    background: linear-gradient(to bottom, #3d444e, #0d1117);
   }
   
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #5c489b;
+  }
+  
+  /* Navigation */
   nav {
-    background-color: #333;
-    color: white;
+    background-color: #161b22;
+    color: #c9d1d9;
     padding: 10px 20px;
     position: sticky;
     top: 0;
@@ -14,56 +27,152 @@ body {
   
   .menu {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    position: relative;
   }
   
+  /* Normales Menü */
+  #menu-items {
+    list-style: none;
+    display: flex; /* Standardmäßig sichtbar */
+    gap: 20px;
+    transition: opacity 0.3s ease; /* Sanfte Animation für Effekte */
+  }
+  
+  #menu-items li a {
+    color: #c9d1d9;
+    transition: color 0.3s ease;
+  }
+  
+  #menu-items li a:hover {
+    color: #5c489b;
+  }
+  
+  /* Burger-Menü */
   #burger-menu {
     font-size: 24px;
     background: none;
     border: none;
     color: white;
     cursor: pointer;
-    display: none; /* Standardmäßig unsichtbar */
+    display: none; /* Unsichtbar für größere Bildschirme */
   }
   
-  #menu-items {
+  /* Overlay-Menü */
+  #overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Leicht transparent */
+    color: #fff;
+    display: none; /* Unsichtbar, bis es geöffnet wird */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+  }
+  
+  #overlay-menu ul {
     list-style: none;
-    display: flex;
-    gap: 20px;
+    padding: 0;
+    text-align: center;
   }
   
-  #menu-items li {
-    display: inline;
+  #overlay-menu ul li {
+    margin: 20px 0;
   }
   
-  #menu-items li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  #overlay-menu ul li a {
+    font-size: 24px;
+    color: #c9d1d9;
   }
   
-  #menu-items li a:hover {
-    color: purple;
+  #overlay-menu ul li a:hover {
+    color: #5c489b;
+  }
+  
+  #close-menu {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
   }
   
   /* Mobile Ansicht */
   @media (max-width: 768px) {
     #burger-menu {
-      display: block; /* Burger-Menü sichtbar */
+      display: block; /* Burger-Menü sichtbar für kleine Bildschirme */
     }
   
     #menu-items {
-      display: none; /* Standardmäßig versteckt */
-      flex-direction: column;
-      background-color: #333;
-      position: absolute;
-      top: 50px;
-      right: 10px;
-      gap: 0;
+      display: none; /* Normales Menü ausblenden auf mobilen Geräten */
     }
+  }
   
-    #menu-items.show {
-      display: flex; /* Anzeigen bei Klick */
-    }
+  /* Profil Header */
+  .profile-container header {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #c9d1d9;
+    margin-bottom: 10px;
+  }
+  
+  header h1 {
+    margin: 10px 0 5px;
+    font-size: 2rem;
+    color: #c9d1d9;
+  }
+  
+  .username {
+    color: #8b949e;
+  }
+  
+  .location {
+    margin: 5px 0;
+  }
+  
+  .linkedin {
+    color: #58a6ff;
+  }
+  
+  /* Hauptinhalt */
+  main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 30px;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #161b22;
+  }
+  
+  h2 {
+    color: #c9d1d9;
+    margin-top: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
   }
