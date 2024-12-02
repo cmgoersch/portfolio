@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgb(135, 135, 135), black);
+  overflow: hidden;
+}
+
+#message {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Über dem Canvas */
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+
+.button-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Über dem Canvas */
+}
+
+#button-barrier {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Übernimmt die Größe des Buttons */
+  background: transparent; /* Unsichtbar */
+  z-index: 2; /* Unter dem Button */
+}
+
+.startButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto;
+  z-index: 3; /* Über der Barriere */
+}
+
+.startButton:hover {
+  background-color: purple;
+  color: white;
+}
+
+#ballCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Canvas bleibt hinter den Text- und Button-Blöcken */
+}
+
+#introduction {
+  padding: 20px;
+  display: none; /* Versteckt, bis der Button geklickt wird */
+  text-align: center;
+}
