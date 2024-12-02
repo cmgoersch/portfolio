@@ -132,7 +132,7 @@ body {
   
   header h1 {
     margin: 10px 0 5px;
-    font-size: 2rem;
+    font-size: 3rem;
     color: #c9d1d9;
   }
   
@@ -141,11 +141,12 @@ body {
   }
   
   .location {
+    color: #c9d1d9;
     margin: 5px 0;
   }
   
   .linkedin {
-    color: #58a6ff;
+    color: #5c489b;
   }
   
   /* Hauptinhalt */
@@ -175,4 +176,8 @@ body {
   
   ul li {
     margin-bottom: 10px;
+  }
+
+   p a {
+    color: #5c489b;
   }
