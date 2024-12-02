@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae</title>
+  <link rel="stylesheet" href="adventure.css">
+  <script src="menu.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="menu">
+      <button id="burger-menu" onclick="openMenu()">☰</button>
+      <ul id="menu-items">
+        <li><a href="index.html">Back to the balls</a></li>
+        <li><a href="adventure.html">Adventure</a></li>
+        <li><a href="about.html">About me</a></li>
+        <li><a href="work.html">My Work</a></li>
+        <li><a href="curriculum.html">Curriculum vitae</a></li>
+      </ul>
+      <div id="overlay-menu">
+        <button id="close-menu" onclick="closeMenu()">✖</button>
+        <ul>
+          <li><a href="index.html" onclick="closeMenu()">Back to the balls</a></li>
+          <li><a href="adventure.html"onclick="closeMenu()">Adventure</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About me</a></li>
+          <li><a href="work.html" onclick="closeMenu()">My Work</a></li>
+          <li><a href="curriculum.html" onclick="closeMenu()">Curriculum vitae</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Main Content -->
+  <main>
+  </main>
+</body>
+</html>

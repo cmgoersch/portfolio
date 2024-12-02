@@ -92,6 +92,7 @@ body {
   
   #overlay-menu ul li a:hover {
     color: #5c489b;
+    
   }
   
   #close-menu {
@@ -180,4 +181,10 @@ body {
 
    p a {
     color: #5c489b;
+    
+  }
+
+  p a:hover {
+    font-weight: 700;
+    
   }
