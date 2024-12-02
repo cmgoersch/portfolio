@@ -24,7 +24,7 @@ body {
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 90px;
   margin-bottom: 10px;
 }
 
@@ -48,19 +48,22 @@ h1 {
 
 .startButton {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   background-color: #fff;
   color: black;
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
   pointer-events: auto;
   z-index: 3; /* Über der Barriere */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .startButton:hover {
-  background-color: purple;
+  background-color: #5c489b;
   color: white;
 }
 

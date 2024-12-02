@@ -42,6 +42,28 @@ for (let i = 0; i < 160; i++) {
 }
 World.add(world, balls);
 
+// Speziellen Ball mit eigener Textur hinzufügen
+const specialBallRadius = 50; // Radius für den speziellen Ball
+const specialBall = Bodies.circle(
+  Math.random() * window.innerWidth, // Zufällige horizontale Position
+  Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
+  specialBallRadius, // Radius des speziellen Balls
+  {
+    restitution: 0.9, // Elastizität der Bälle
+    friction: 0.4, // Reibung
+    render: {
+      sprite: {
+        texture: 'smily.png', // Spezielle Textur für diesen Ball
+        xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
+        yScale: 2 * (specialBallRadius / 100),
+      },
+    },
+  }
+);
+
+// Füge den speziellen Ball zur Welt hinzu
+World.add(world, specialBall);
+
 // Wände hinzufügen
 const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, {
   isStatic: true,
@@ -125,3 +147,12 @@ window.addEventListener('resize', () => {
     { x: updatedRect.left, y: updatedRect.bottom },
   ]);
 });
+
+window.addEventListener('resize', () => {
+    // Aktualisiere nur die Canvas- und Button-Barriere-Positionen
+    const updatedRect = buttonBarrierDiv.getBoundingClientRect();
+    Matter.Body.setPosition(buttonBarrier, {
+      x: updatedRect.left + updatedRect.width / 2,
+      y: updatedRect.top + updatedRect.height / 2,
+    });
+  });
