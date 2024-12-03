@@ -31,7 +31,7 @@ for (let i = 0; i < 160; i++) {
       friction: 0.4, // Reibung
       render: {
         sprite: {
-          texture: 'public/gradient-circle.svg', // Hier die Texturdatei einfügen
+          texture: '../assets/images/gradient-circle.svg', // Pfad anpassen
           xScale: 2 * (radius / 100), // Skaliert das Bild basierend auf dem Radius
           yScale: 2 * (radius / 100),
         },
@@ -53,7 +53,7 @@ const specialBall = Bodies.circle(
     friction: 0.4, // Reibung
     render: {
       sprite: {
-        texture: 'public/smily.png', // Spezielle Textur für diesen Ball
+        texture: '../assets/images/smily.png', // Pfad für das spezielle Bild anpassen
         xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
         yScale: 2 * (specialBallRadius / 100),
       },
@@ -149,12 +149,10 @@ window.addEventListener('resize', () => {
 });
 
 window.addEventListener('resize', () => {
-    // Aktualisiere nur die Canvas- und Button-Barriere-Positionen
-    const updatedRect = buttonBarrierDiv.getBoundingClientRect();
-    Matter.Body.setPosition(buttonBarrier, {
-      x: updatedRect.left + updatedRect.width / 2,
-      y: updatedRect.top + updatedRect.height / 2,
-    });
+  // Aktualisiere nur die Canvas- und Button-Barriere-Positionen
+  const updatedRect = buttonBarrierDiv.getBoundingClientRect();
+  Matter.Body.setPosition(buttonBarrier, {
+    x: updatedRect.left + updatedRect.width / 2,
+    y: updatedRect.top + updatedRect.height / 2,
   });
-
-
+});

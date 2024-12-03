@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio Landing Page</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Verlinkung zu globalen CSS -->
+  <link rel="stylesheet" href="../assets/styles/styles.css">
+  <!-- Matter.js Bibliothek -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 </head>
 <body>
   <div id="container">
     <!-- Reload Icon -->
     <div id="reload-icon">
-      <img src="public/reload.svg" alt="Reload Icon" onclick="location.reload();" />
+      <img src="../assets/images/reload.svg" alt="Reload Icon" onclick="location.reload();" />
     </div>
 
     <!-- Message -->
@@ -23,7 +25,7 @@
     <!-- Button Container -->
     <div class="button-container">
       <div id="button-barrier"></div>
-      <button class="startButton" onclick="window.location.href='about.html'">
+      <button class="startButton" onclick="window.location.href='../views/about.html'">
         Enough with the bubbles! Let's go!
       </button>
     </div>
@@ -38,6 +40,7 @@
     <p>Hier finden Sie Informationen zu meinem Portfolio. Scrollen Sie weiter, um mehr zu erfahren!</p>
   </div>
   
-  <script src="script.js"></script>
+  <!-- Verlinkung zu JavaScript -->
+  <script src="../js/script.js"></script>
 </body>
 </html>
