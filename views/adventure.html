@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../assets/styles/adventure.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script src="../js/menu.js"></script>
-  <script src="../js/skillMix.js" defer></script>
+  
 </head>
 <body>
   <!-- Navigation -->
@@ -37,10 +37,14 @@
 
   <!-- Main Content -->
   <main>
-    <header id="skill-mix-header">
+    <div id="reload-icon">
+      <img src="../assets/images/reload.svg" alt="Reload" onclick="location.reload();" />
+    </div>
+    <header id="message">
       <h1>Skill Mix</h1>
     </header>
     <canvas id="ballCanvas"></canvas>
+    <script src="../js/adventure.js" defer></script>
   </main>
 </body>
 </html>

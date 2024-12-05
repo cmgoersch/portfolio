@@ -16,9 +16,7 @@ body {
     text-decoration: none;
   }
   
-  a:hover {
-    color: #5c489b;
-  }
+
   
   /* Navigation Styling */
   nav {
@@ -30,31 +28,8 @@ body {
     z-index: 10;
   }
   
-  .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  #menu-items {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  #menu-items li a {
-    color: #c9d1d9;
-  }
-  
-  #menu-items li a:hover {
-    color: #5c489b;
-  }
-  
-  #burger-menu {
-    display: none;
-  }
-  
+
+
   /* Header für Skill Mix */
   #skill-mix-header {
     text-align: center;
