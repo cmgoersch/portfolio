@@ -61,7 +61,7 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 0; /* Über dem Canvas */
+    z-index: 0;
     text-align: center;
     color: white;
   }
@@ -75,16 +75,16 @@ body {
     position: fixed;
     top: 100px;
     right: 20px;
-    z-index: 100; /* Stellt sicher, dass der Button immer sichtbar ist */
+    z-index: 100;
     cursor: pointer;
   }
   
   #reload-icon img {
     width: 40px;
     height: 40px;
-    transition: transform 0.3s ease; /* Optionale Animation */
+    transition: transform 0.3s ease; 
   }
   
   #reload-icon img:hover {
-    transform: rotate(90deg); /* Dreht das Bild beim Hover */
+    transform: rotate(90deg);
   }
