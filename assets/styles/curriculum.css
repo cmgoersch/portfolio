@@ -197,13 +197,14 @@ body {
   }
   
   .section ul li {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
   
   .section ul li span {
     color: #8b949e;
     font-size: 14px;
-    float: right;
+    float: left;
+    margin-right: 10px;
   }
   
   .section p {

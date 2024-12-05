@@ -61,24 +61,6 @@ const specialBall = Bodies.circle(
   }
 );
 
-// Speziellen Ball mit eigener Textur hinzufügen
-const specialBallRadius = 50; // Radius für den speziellen Ball
-const specialBall = Bodies.circle(
-  Math.random() * window.innerWidth, // Zufällige horizontale Position
-  Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
-  specialBallRadius, // Radius des speziellen Balls
-  {
-    restitution: 0.9, // Elastizität der Bälle
-    friction: 0.4, // Reibung
-    render: {
-      sprite: {
-        texture: '../assets/images/smily.png', // Pfad für das spezielle Bild anpassen
-        xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
-        yScale: 2 * (specialBallRadius / 100),
-      },
-    },
-  }
-);
 
 // Füge den speziellen Ball zur Welt hinzu
 World.add(world, specialBall);
