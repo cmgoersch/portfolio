@@ -1,3 +1,182 @@
-main {
-    height: 100vh;
+/* Allgemeines Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #c9d1d9;
+    background: linear-gradient(to bottom, #3d444e, #0d1117);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #5c489b;
+}
+
+/* Navigation */
+nav {
+    background-color: #161b22;
+    color: #c9d1d9;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Normales Menü */
+#menu-items {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    transition: opacity 0.3s ease; /* Sanfte Animation für Effekte */
+}
+
+#menu-items li a {
+    color: #c9d1d9;
+    transition: color 0.3s ease;
+}
+
+#menu-items li a:hover {
+    color: #5c489b;
+}
+
+/* Burger-Menü */
+#burger-menu {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none; /* Unsichtbar für größere Bildschirme */
+}
+
+/* Overlay-Menü */
+#overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Leicht transparent */
+    color: #fff;
+    display: none; /* Unsichtbar, bis es geöffnet wird */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+#overlay-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#overlay-menu ul li {
+    margin: 20px 0;
+}
+
+#overlay-menu ul li a {
+    font-size: 24px;
+    color: #c9d1d9;
+}
+
+#overlay-menu ul li a:hover {
+    color: #5c489b;
+}
+
+#close-menu {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Mobile Ansicht */
+@media (max-width: 768px) {
+    #burger-menu {
+        display: block; /* Burger-Menü sichtbar für kleine Bildschirme */
     }
+
+    #menu-items {
+        display: none; /* Normales Menü ausblenden auf mobilen Geräten */
+    }
+}
+
+/* Main Bereich */
+main {
+    height: calc(100vh - 60px); /* Höhe minus Header */
+    overflow-y: auto; /* Ermöglicht Scrollen, falls Inhalte zu groß sind */
+}
+
+/* Vertikales Layout für Iframes und Buttons */
+.vertical-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Abstand zwischen den Containern */
+    padding: 20px;
+}
+
+.content-item {
+    background: #161b22;
+    border: 2px solid #5c489b;
+    border-radius: 8px;
+    width: 90%; /* Breite der Container */
+    max-width: 800px; /* Maximalbreite */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding-bottom: 15px; /* Platz für den Button */
+}
+
+.content-item iframe {
+    width: 100%;
+    height: 500px; /* Höhe des Iframes */
+    border: none;
+}
+
+.content-item button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #5c489b;
+    color: #c9d1d9;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.content-item button:hover {
+    background-color: #3d2d6a;
+}
+
+/* Scrollbar-Styling */
+.vertical-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vertical-container::-webkit-scrollbar-thumb {
+    background: #5c489b;
+    border-radius: 4px;
+}
+
+.vertical-container::-webkit-scrollbar-track {
+    background: #161b22;
+}
