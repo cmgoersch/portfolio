@@ -13,17 +13,23 @@ body {
   overflow: hidden;
 }
 
+/* Reload-Icon Styling */
 #reload-icon {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 10;
+  z-index: 100; /* Stellt sicher, dass der Button immer sichtbar ist */
   cursor: pointer;
 }
 
 #reload-icon img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease; /* Optionale Animation */
+}
+
+#reload-icon img:hover {
+  transform: rotate(90deg); /* Dreht das Bild beim Hover */
 }
 
 #message {

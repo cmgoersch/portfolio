@@ -3,7 +3,7 @@ const { Engine, Render, World, Bodies, Mouse, MouseConstraint } = Matter;
 // Engine erstellen
 const engine = Engine.create();
 const world = engine.world;
-world.gravity.y = 0.3; // Schwerkraft einstellen
+world.gravity.y = 0.2; // Schwerkraft einstellen
 
 // Canvas erstellen und Renderer konfigurieren
 const canvas = document.getElementById('ballCanvas');
@@ -41,6 +41,25 @@ for (let i = 0; i < 160; i++) {
   balls.push(ball);
 }
 World.add(world, balls);
+
+// Speziellen Ball mit eigener Textur hinzufügen
+const specialBallRadius = 50; // Radius für den speziellen Ball
+const specialBall = Bodies.circle(
+  Math.random() * window.innerWidth, // Zufällige horizontale Position
+  Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
+  specialBallRadius, // Radius des speziellen Balls
+  {
+    restitution: 0.9, // Elastizität der Bälle
+    friction: 0.4, // Reibung
+    render: {
+      sprite: {
+        texture: '../assets/images/smily.png', // Pfad für das spezielle Bild anpassen
+        xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
+        yScale: 2 * (specialBallRadius / 100),
+      },
+    },
+  }
+);
 
 // Speziellen Ball mit eigener Textur hinzufügen
 const specialBallRadius = 50; // Radius für den speziellen Ball

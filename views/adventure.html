@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curriculum Vitae</title>
+  <title>Adventure - Skill Mix</title>
   <link rel="stylesheet" href="../assets/styles/menu.css">
   <link rel="stylesheet" href="../assets/styles/adventure.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script src="../js/menu.js"></script>
+  <script src="../js/skillMix.js" defer></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -24,7 +26,7 @@
         <button id="close-menu" onclick="closeMenu()">✖</button>
         <ul>
           <li><a href="../index.html" onclick="closeMenu()">Back to the bubbles</a></li>
-          <li><a href="adventure.html"onclick="closeMenu()">Adventure</a></li>
+          <li><a href="adventure.html" onclick="closeMenu()">Adventure</a></li>
           <li><a href="about.html" onclick="closeMenu()">About me</a></li>
           <li><a href="work.html" onclick="closeMenu()">My Work</a></li>
           <li><a href="curriculum.html" onclick="closeMenu()">Curriculum vitae</a></li>
@@ -32,8 +34,13 @@
       </div>
     </div>
   </nav>
+
   <!-- Main Content -->
   <main>
+    <header id="skill-mix-header">
+      <h1>Skill Mix</h1>
+    </header>
+    <canvas id="ballCanvas"></canvas>
   </main>
 </body>
 </html>
