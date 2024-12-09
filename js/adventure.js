@@ -18,13 +18,33 @@ const render = Render.create({
   },
 });
 
-// Begriffe, die auf den Bällen stehen sollen
-const skills = [
-  'Adobe Creative Cloud', 'Photoshop', 'Illustrator', 'InDesign', 'Audition', 'Figma',
-  'UX/UI Design', 'Webdesign', 'Typography', 'Visual Storytelling', 'Graphic Design',
-  'Infografik', 'Excalidraw', 'Lightroom', 'Web development', 'HTML', 'CSS', 'JavaScript',
-  'React', 'Next.js', 'GitHub', 'MongoDB', 'Slack',
-];
+// Begriffe und Icons-Map
+const skillsWithIcons = {
+  'Adobe Creative Cloud': '../assets/images/adobe.svg',
+  'Photoshop': '../assets/images/photoshop.svg',
+  'Illustrator': '../assets/images/illustrator.svg',
+  'InDesign': '../assets/images/indesign.svg',
+  'Audition': '../assets/images/audition.svg',
+  'Figma': '../assets/images/figma.svg',
+  'UX/UI Design': '../assets/images/ux-ui.svg',
+  'Webdesign': '../assets/images/webdesign.svg',
+  'Typography': '../assets/images/typography.svg',
+  'Visual Storytelling': '../assets/images/storytelling.svg',
+  'Graphic Design': '../assets/images/graphic-design.svg',
+  'Infografik': '../assets/images/infografik.svg',
+  'Excalidraw': '../assets/images/excalidraw.svg',
+  'Lightroom': '../assets/images/lightroom.svg',
+  'Web development': '../assets/images/web-development.svg',
+  'HTML': '../assets/images/html.svg',
+  'CSS': '../assets/images/css.svg',
+  'JavaScript': '../assets/images/javascript.svg',
+  'React': '../assets/images/react.svg',
+  'Next.js': '../assets/images/nextjs.svg',
+  'GitHub': '../assets/images/github.svg',
+  'MongoDB': '../assets/images/mongodb.svg',
+  'Slack': '../assets/images/slack.svg',
+};
+
 
 // Funktion, um den Radius basierend auf der Textlänge und -größe zu berechnen
 function calculateRadius(text, fontSize) {
@@ -32,12 +52,12 @@ function calculateRadius(text, fontSize) {
   const context = canvas.getContext('2d');
   context.font = `${fontSize}px Arial`;
   const textWidth = context.measureText(text).width;
-  return Math.max(textWidth / 2 + 10, fontSize * 3.5); // Radius basierend auf Textbreite und Schriftgröße
+  return Math.max(textWidth / 2 + 20, fontSize * 4); // Radius basierend auf Textbreite und Schriftgröße
 }
 
-// Bälle mit Textur und dynamischer Größe erstellen
-const balls = skills.map(skill => {
-  const fontSize = 29; // Schriftgröße
+// Bälle mit Icons und Text erstellen
+const balls = Object.entries(skillsWithIcons).map(([skill, icon]) => {
+  const fontSize = 20; // Schriftgröße für Text
   const radius = calculateRadius(skill, fontSize); // Dynamisch berechneter Radius
 
   const ball = Bodies.circle(
@@ -49,13 +69,14 @@ const balls = skills.map(skill => {
       friction: 0.4, // Reibung
       render: {
         sprite: {
-          texture: '../assets/images/gradient-circle.svg', // Bild für den Ball
-          xScale: radius / 50, // Skaliert das Bild basierend auf dem Radius
+          texture: '../assets/images/gradient-circle.svg', // Blasen-Hintergrund
+          xScale: radius / 50, // Skaliert das Hintergrundbild
           yScale: radius / 50,
         },
-        customText: {
-          content: skill, // Der Begriff (z. B. "Adobe Creative Cloud")
-          size: fontSize, // Textgröße
+        customContent: {
+          icon, // Das Icon-Bild
+          content: skill, // Der Text
+          size: fontSize, // Schriftgröße
           color: '#ffffff', // Textfarbe
         },
       },
@@ -98,12 +119,12 @@ window.addEventListener('resize', () => {
   render.canvas.height = window.innerHeight;
 });
 
-// Text und Bälle rendern
+// Text und Icons rendern
 Matter.Render.bodies = function(render, bodies, context) {
   const c = context;
 
   bodies.forEach(body => {
-    // Zeichne das Sprite-Bild (den Ball)
+    // Zeichne das Hintergrundbild der Blase
     if (body.render.sprite && body.render.sprite.texture) {
       const sprite = body.render.sprite;
       const { x, y } = body.position;
@@ -124,15 +145,34 @@ Matter.Render.bodies = function(render, bodies, context) {
       c.restore();
     }
 
-    // Zeichne den Text (den Begriff)
-    if (body.render.customText && body.render.customText.content) {
-      const { content, size, color } = body.render.customText;
+    // Zeichne das Icon über dem Text
+    if (body.render.customContent && body.render.customContent.icon) {
+      const iconImage = new Image();
+      iconImage.src = body.render.customContent.icon; // Lade das Icon
+      const { x, y } = body.position;
+      const radius = body.circleRadius; // Radius der Blase
+
+      c.save();
+      c.translate(x, y - radius / 3); // Position: Leicht nach oben verschoben
+      c.drawImage(
+        iconImage,
+        -radius / 4, // Zentriere das Icon horizontal
+        -radius / 4, // Zentriere das Icon vertikal
+        radius / 2, // Breite des Icons
+        radius / 2  // Höhe des Icons
+      );
+      c.restore();
+    }
+
+    // Zeichne den Text unter dem Icon
+    if (body.render.customContent && body.render.customContent.content) {
+      const { content, size, color } = body.render.customContent;
       const { x, y } = body.position;
 
       c.font = `${size}px Arial`;
       c.fillStyle = color;
       c.textAlign = 'center';
-      c.fillText(content, x, y + 5); // Text leicht nach unten verschieben
+      c.fillText(content, x, y + body.circleRadius / 4); // Text unter das Icon verschieben
     }
   });
 };
