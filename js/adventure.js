@@ -43,6 +43,7 @@ const skillsWithIcons = {
   'GitHub': '../assets/images/github.svg',
   'MongoDB': '../assets/images/mongodb.svg',
   'Slack': '../assets/images/slack.svg',
+  'Python': '../assets/images/python.svg',
 };
 
 
@@ -52,12 +53,12 @@ function calculateRadius(text, fontSize) {
   const context = canvas.getContext('2d');
   context.font = `${fontSize}px Arial`;
   const textWidth = context.measureText(text).width;
-  return Math.max(textWidth / 2 + 20, fontSize * 4); // Radius basierend auf Textbreite und Schriftgröße
+  return Math.max(textWidth / 2 + 20, fontSize * 3.5); // Radius basierend auf Textbreite und Schriftgröße
 }
 
 // Bälle mit Icons und Text erstellen
 const balls = Object.entries(skillsWithIcons).map(([skill, icon]) => {
-  const fontSize = 20; // Schriftgröße für Text
+  const fontSize = 18; // Schriftgröße für Text
   const radius = calculateRadius(skill, fontSize); // Dynamisch berechneter Radius
 
   const ball = Bodies.circle(
