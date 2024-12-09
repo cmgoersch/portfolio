@@ -1,4 +1,4 @@
-/* Allgemeines Styling */
+
 body {
     margin: 0;
     padding: 0;
@@ -66,7 +66,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Leicht transparent */
+    background-color: rgba(0, 0, 0, 0.9);
     color: #fff;
     display: none; /* Unsichtbar, bis es geöffnet wird */
     flex-direction: column;
@@ -112,14 +112,14 @@ nav {
     }
 
     #menu-items {
-        display: none; /* Normales Menü ausblenden auf mobilen Geräten */
+        display: none; 
     }
 }
 
 /* Main Bereich */
 main {
-    height: calc(100vh - 60px); /* Höhe minus Header */
-    overflow-y: auto; /* Ermöglicht Scrollen, falls Inhalte zu groß sind */
+    height: calc(100vh - 60px); 
+    overflow-y: auto;
 }
 
 /* Vertikales Layout für Iframes und Buttons */
@@ -142,12 +142,12 @@ main {
     align-items: center;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    padding-bottom: 15px; /* Platz für den Button */
+    padding-bottom: 15px; 
 }
 
 .content-item iframe {
     width: 100%;
-    height: 500px; /* Höhe des Iframes */
+    height: 500px;
     border: none;
 }
 
