@@ -68,7 +68,19 @@ body {
   
   h1 {
     font-size: 90px;
-    margin-bottom: 10px;
+      margin-bottom: 10px;
+
+  /* Farbverlauf als Hintergrund */
+  background: linear-gradient(to right, #5a4599, #ffffff);
+  
+  /* Der Trick: Hintergrundclip auf Text anwenden */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Für manche Browser */
+  background-clip: text;
+  color: transparent;
+}
   }
   
   #reload-icon {
