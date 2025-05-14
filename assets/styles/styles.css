@@ -47,7 +47,7 @@ h1 {
   margin-bottom: 10px;
 
   /* Farbverlauf als Hintergrund */
-  background: linear-gradient(to right, #9721ff, #ffffff);
+  background: linear-gradient(to right, #5a4599, #ffffff);
   
   /* Der Trick: Hintergrundclip auf Text anwenden */
   -webkit-background-clip: text;
