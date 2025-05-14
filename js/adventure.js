@@ -78,7 +78,7 @@ const balls = Object.entries(skillsWithIcons).map(([skill, icon]) => {
           icon, // Das Icon-Bild
           content: skill, // Der Text
           size: fontSize, // Schriftgröße
-          // color: '#ffffff', // Textfarbe
+          color: '#ffffff', // Textfarbe
         },
       },
     }
