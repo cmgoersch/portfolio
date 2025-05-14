@@ -53,9 +53,9 @@ const specialBall = Bodies.circle(
     friction: 0.4, // Reibung
     render: {
       sprite: {
-        texture: '../assets/images/smily.png', // Pfad für das spezielle Bild anpassen
-        xScale: 2 * (specialBallRadius / 100), // Skaliert das Bild basierend auf dem Radius
-        yScale: 2 * (specialBallRadius / 100),
+        texture: '../assets/images/smily_2.png', // Pfad für das spezielle Bild anpassen
+        xScale: 2 * (specialBallRadius / 240), // Skaliert das Bild basierend auf dem Radius
+        yScale: 2 * (specialBallRadius / 240),
       },
     },
   }
