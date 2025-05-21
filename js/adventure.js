@@ -1,24 +1,8 @@
+// adventure.js
+
 const { Engine, Render, World, Bodies, Mouse, MouseConstraint } = Matter;
 
-// Engine erstellen
-const engine = Engine.create();
-const world = engine.world;
-world.gravity.y = 0.2; // Schwerkraft einstellen
-
-// Canvas erstellen und Renderer konfigurieren
-const canvas = document.getElementById('ballCanvas');
-const render = Render.create({
-  canvas: canvas,
-  engine: engine,
-  options: {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    background: 'transparent',
-    wireframes: false, // Deaktiviert Debug-Darstellung
-  },
-});
-
-// Begriffe und Icons-Map
+// Skill-Liste mit Icons
 const skillsWithIcons = {
   'Adobe Creative Cloud': '../assets/images/adobe.svg',
   'Photoshop': '../assets/images/photoshop.svg',
@@ -46,134 +30,143 @@ const skillsWithIcons = {
   'Python': '../assets/images/python.svg',
 };
 
+const backgroundTexture = '../assets/images/gradient-circle.svg';
+const fontSize = 18;
 
-// Funktion, um den Radius basierend auf der Textlänge und -größe zu berechnen
-function calculateRadius(text, fontSize) {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  context.font = `${fontSize}px Arial`;
-  const textWidth = context.measureText(text).width;
-  return Math.max(textWidth / 2 + 20, fontSize * 3.5); // Radius basierend auf Textbreite und Schriftgröße
+// Bild-Preloader mit Caching
+function preloadImages(imagePaths) {
+  const imageCache = {};
+  const promises = imagePaths.map(src => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        imageCache[src] = img;
+        resolve();
+      };
+      img.onerror = reject;
+      img.src = src;
+    });
+  });
+  return Promise.all(promises).then(() => imageCache);
 }
 
-// Bälle mit Icons und Text erstellen
-const balls = Object.entries(skillsWithIcons).map(([skill, icon]) => {
-  const fontSize = 18; // Schriftgröße für Text
-  const radius = calculateRadius(skill, fontSize); // Dynamisch berechneter Radius
+// Radius basierend auf Textlänge berechnen
+function calculateRadius(text, fontSize) {
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.font = `${fontSize}px Arial`;
+  return Math.max(ctx.measureText(text).width / 2 + 20, fontSize * 3.5);
+}
 
-  const ball = Bodies.circle(
-    Math.random() * window.innerWidth, // Zufällige horizontale Position
-    Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
-    radius, // Dynamischer Radius
-    {
-      restitution: 0.9, // Elastizität der Bälle
-      friction: 0.4, // Reibung
-      render: {
-        sprite: {
-          texture: '../assets/images/gradient-circle.svg', // Blasen-Hintergrund
-          xScale: radius / 50, // Skaliert das Hintergrundbild
-          yScale: radius / 50,
+// Start der Simulation
+function startSimulation(assets) {
+  const engine = Engine.create();
+  const world = engine.world;
+  world.gravity.y = 0.2;
+
+  const canvas = document.getElementById('ballCanvas');
+  const render = Render.create({
+    canvas: canvas,
+    engine: engine,
+    options: {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      background: 'transparent',
+      wireframes: false,
+    },
+  });
+
+  const balls = Object.entries(skillsWithIcons).map(([skill, icon]) => {
+    const radius = calculateRadius(skill, fontSize);
+    return Bodies.circle(
+      Math.random() * window.innerWidth,
+      Math.random() * window.innerHeight * -1,
+      radius,
+      {
+        restitution: 0.9,
+        friction: 0.4,
+        render: {
+          sprite: {
+            texture: backgroundTexture,
+            xScale: radius / 50,
+            yScale: radius / 50,
+          },
+          customContent: {
+            icon,
+            content: skill,
+            size: fontSize,
+            color: '#ffffff',
+          },
         },
-        customContent: {
-          icon, // Das Icon-Bild
-          content: skill, // Der Text
-          size: fontSize, // Schriftgröße
-          color: '#ffffff', // Textfarbe
-        },
-      },
-    }
-  );
+      }
+    );
+  });
 
-  return ball;
-});
+  World.add(world, balls);
 
-// Bälle zur Welt hinzufügen
-World.add(world, balls);
+  const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
+  const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
+  const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
+  World.add(world, [ground, leftWall, rightWall]);
 
-// Wände hinzufügen
-const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, {
-  isStatic: true,
-  render: { fillStyle: 'transparent' },
-});
-const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
-const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
-World.add(world, [ground, leftWall, rightWall]);
+  const mouse = Mouse.create(canvas);
+  const mouseConstraint = MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: { stiffness: 0.3, render: { visible: false } },
+  });
+  World.add(world, mouseConstraint);
 
-// Mausinteraktion hinzufügen
-const mouse = Mouse.create(canvas);
-const mouseConstraint = MouseConstraint.create(engine, {
-  mouse: mouse,
-  constraint: {
-    stiffness: 0.3,
-    render: { visible: false },
-  },
-});
-World.add(world, mouseConstraint);
+  Engine.run(engine);
+  Render.run(render);
 
-// Engine und Renderer starten
-Engine.run(engine);
-Render.run(render);
+  window.addEventListener('resize', () => {
+    render.canvas.width = window.innerWidth;
+    render.canvas.height = window.innerHeight;
+  });
 
-// Canvas an die Fenstergröße anpassen
-window.addEventListener('resize', () => {
-  render.canvas.width = window.innerWidth;
-  render.canvas.height = window.innerHeight;
-});
-
-// Text und Icons rendern
-Matter.Render.bodies = function(render, bodies, context) {
-  const c = context;
-
-  bodies.forEach(body => {
-    // Zeichne das Hintergrundbild der Blase
-    if (body.render.sprite && body.render.sprite.texture) {
-      const sprite = body.render.sprite;
+  Matter.Render.bodies = function(render, bodies, context) {
+    const c = context;
+    bodies.forEach(body => {
       const { x, y } = body.position;
       const angle = body.angle;
+      const radius = body.circleRadius;
+      const sprite = body.render.sprite;
+      const bgImg = assets[sprite.texture];
+      if (bgImg?.complete) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.drawImage(bgImg, -sprite.xScale * 50, -sprite.yScale * 50, sprite.xScale * 100, sprite.yScale * 100);
+        c.restore();
+      }
 
-      const image = new Image();
-      image.src = sprite.texture; // Lade das Bild
-      c.save();
-      c.translate(x, y);
-      c.rotate(angle);
-      c.drawImage(
-        image,
-        -sprite.xScale * 50, // Zentriere das Bild
-        -sprite.yScale * 50,
-        sprite.xScale * 100, // Skalierung für Breite
-        sprite.yScale * 100 // Skalierung für Höhe
-      );
-      c.restore();
-    }
+      const iconSrc = body.render.customContent.icon;
+      const iconImg = assets[iconSrc];
+      if (iconImg?.complete) {
+        c.save();
+        c.translate(x, y - radius / 3);
+        c.drawImage(iconImg, -radius / 4, -radius / 4, radius / 2, radius / 2);
+        c.restore();
+      }
 
-    // Zeichne das Icon über dem Text
-    if (body.render.customContent && body.render.customContent.icon) {
-      const iconImage = new Image();
-      iconImage.src = body.render.customContent.icon; // Lade das Icon
-      const { x, y } = body.position;
-      const radius = body.circleRadius; // Radius der Blase
-
-      c.save();
-      c.translate(x, y - radius / 3); // Position: Leicht nach oben verschoben
-      c.drawImage(
-        iconImage,
-        -radius / 4, // Zentriere das Icon horizontal
-        -radius / 4, // Zentriere das Icon vertikal
-        radius / 2, // Breite des Icons
-        radius / 2  // Höhe des Icons
-      );
-      c.restore();
-    }
-
-    // Zeichne den Text unter dem Icon
-    if (body.render.customContent && body.render.customContent.content) {
       const { content, size, color } = body.render.customContent;
-      const { x, y } = body.position;
-
       c.font = `${size}px Arial`;
       c.fillStyle = color;
       c.textAlign = 'center';
-      c.fillText(content, x, y + body.circleRadius / 4); // Text unter das Icon verschieben
-    }
+      c.fillText(content, x, y + radius / 4);
+    });
+  };
+}
+
+// Lade Bilder und starte
+const allImagePaths = [
+  backgroundTexture,
+  ...Object.values(skillsWithIcons),
+];
+
+preloadImages(allImagePaths)
+  .then(imageCache => {
+    startSimulation(imageCache);
+  })
+  .catch(err => {
+    console.error('Bild konnte nicht geladen werden:', err);
   });
-};
