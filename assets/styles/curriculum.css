@@ -210,3 +210,135 @@ body {
   .section p {
     margin: 10px 0;
   }
+
+  /* Neue Struktur für Listenpunkte (Erfahrung & Bildung) */
+.section ul li {
+  margin-bottom: 20px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.section ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #5c489b;
+  font-weight: bold;
+}
+
+/* Abschnittsüberschriften visuell trennen */
+.section h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #5c489b;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* Skills als Badges / Tags */
+.section ul li.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section ul li.skills span {
+  background-color: #30363d;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  color: #c9d1d9;
+  border: 1px solid #444c56;
+  transition: background 0.3s;
+}
+
+.section ul li.skills span:hover {
+  background-color: #5c489b;
+  cursor: default;
+}
+
+/* Spacing im letzten Abschnitt (Interessen/Engagement) */
+.section:last-child {
+  margin-bottom: 60px;
+}
+
+/* Extra für kleinere Devices */
+@media (max-width: 600px) {
+  .section ul li.skills {
+    justify-content: flex-start;
+  }
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-list li {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.entry .date {
+  min-width: 140px;
+  color: #8b949e;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.entry .details {
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+/* Responsiv */
+@media (max-width: 600px) {
+  .entry {
+    flex-direction: column;
+  }
+
+  .entry .date {
+    min-width: auto;
+  }
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.skill-tags span {
+  border: 1px solid #c9d1d9;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  color: #c9d1d9;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* .skill-tags span:hover {
+  background-color: #5c489b;
+  cursor: default;
+} */
+
+.section h3 {
+  color: #c9d1d9;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-left: 4px solid #5c489b;
+  padding-left: 10px;
+}
