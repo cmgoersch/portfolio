@@ -342,3 +342,25 @@ body {
   border-left: 4px solid #5c489b;
   padding-left: 10px;
 }
+
+.skill-button-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.skill-mix-button {
+  background-color: transparent;
+  color: #c9d1d9;
+  border: 2px solid #5c489b;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.skill-mix-button:hover {
+  background-color: #5c489b;
+  color: #ffffff;
+  box-shadow: 0 0 8px #5c489b88;
+}
