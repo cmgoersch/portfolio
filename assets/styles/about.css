@@ -33,12 +33,14 @@
   }
   
   /* Hauptinhalt */
-  main {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-  }
-  
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
   section {
     margin-bottom: 30px;
     border: 1px solid #30363d;
@@ -128,4 +130,25 @@ button {
 
 button:hover {
   background-color: #48347b;
+}
+
+.site-footer {
+  background-color: #161b22;
+  color: #c9d1d9;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  border-top: 1px solid #30363d;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: #c9d1d9;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #5c489b;
 }
