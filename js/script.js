@@ -1,9 +1,21 @@
 const { Engine, Render, World, Bodies, Mouse, MouseConstraint } = Matter;
 
+// Funktion: Ballgröße abhängig von Bildschirmbreite
+function getBallRadius() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 600) {
+    return Math.random() * 20 + 10; // 10px bis 30px
+  } else if (screenWidth < 1024) {
+    return Math.random() * 30 + 15; // 15px bis 45px
+  } else {
+    return Math.random() * 40 + 20; // 20px bis 60px
+  }
+}
+
 // Engine erstellen
 const engine = Engine.create();
 const world = engine.world;
-world.gravity.y = 0.2; // Schwerkraft einstellen
+world.gravity.y = 0.2;
 
 // Canvas erstellen und Renderer konfigurieren
 const canvas = document.getElementById('ballCanvas');
@@ -14,25 +26,26 @@ const render = Render.create({
     width: window.innerWidth,
     height: window.innerHeight,
     background: 'transparent',
-    wireframes: false, // Deaktiviert Debug-Darstellung
+    wireframes: false,
   },
 });
 
 // Bälle mit Textur erstellen
 const balls = [];
 for (let i = 0; i < 160; i++) {
-  const radius = Math.random() * 40 + 15; // Zufällige Größe (15px bis 45px Radius)
+  const radius = getBallRadius();
+
   const ball = Bodies.circle(
-    Math.random() * window.innerWidth, // Zufällige horizontale Position
-    Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
-    radius, // Radius
+    Math.random() * window.innerWidth,
+    Math.random() * window.innerHeight * -1,
+    radius,
     {
-      restitution: 0.9, // Elastizität der Bälle
-      friction: 0.4, // Reibung
+      restitution: 0.9,
+      friction: 0.4,
       render: {
         sprite: {
-          texture: '../assets/images/gradient-circle.svg', // Pfad anpassen
-          xScale: 2 * (radius / 100), // Skaliert das Bild basierend auf dem Radius
+          texture: '../assets/images/gradient-circle.svg',
+          xScale: 2 * (radius / 100),
           yScale: 2 * (radius / 100),
         },
       },
@@ -43,26 +56,23 @@ for (let i = 0; i < 160; i++) {
 World.add(world, balls);
 
 // Speziellen Ball mit eigener Textur hinzufügen
-const specialBallRadius = 50; // Radius für den speziellen Ball
+const specialBallRadius = window.innerWidth < 600 ? 30 : 50;
 const specialBall = Bodies.circle(
-  Math.random() * window.innerWidth, // Zufällige horizontale Position
-  Math.random() * window.innerHeight * -1, // Start oberhalb des Bildschirms
-  specialBallRadius, // Radius des speziellen Balls
+  Math.random() * window.innerWidth,
+  Math.random() * window.innerHeight * -1,
+  specialBallRadius,
   {
-    restitution: 0.9, // Elastizität der Bälle
-    friction: 0.4, // Reibung
+    restitution: 0.9,
+    friction: 0.4,
     render: {
       sprite: {
-        texture: '../assets/images/smily_2.png', // Pfad für das spezielle Bild anpassen
-        xScale: 2 * (specialBallRadius / 240), // Skaliert das Bild basierend auf dem Radius
+        texture: '../assets/images/smily_2.png',
+        xScale: 2 * (specialBallRadius / 240),
         yScale: 2 * (specialBallRadius / 240),
       },
     },
   }
 );
-
-
-// Füge den speziellen Ball zur Welt hinzu
 World.add(world, specialBall);
 
 // Wände hinzufügen
@@ -83,25 +93,20 @@ const mouseConstraint = MouseConstraint.create(engine, {
     render: { visible: false },
   },
 });
-
-// Mausinteraktion auf den Canvas beschränken
 mouse.element.removeEventListener('mousedown', mouseConstraint.mouse.mousedown);
 mouse.element.addEventListener('mousedown', (event) => {
   const target = event.target;
-
-  // Wenn das Ziel kein Button ist, Matter.js-Interaktion aktivieren
   if (!target.closest('.button-container')) {
     mouseConstraint.mouse.mousedown(event);
   }
 });
-
 World.add(world, mouseConstraint);
 
 // Engine und Renderer starten
 Engine.run(engine);
 Render.run(render);
 
-// Canvas an die Fenstergröße anpassen
+// Canvas an Fenstergröße anpassen
 window.addEventListener('resize', () => {
   render.canvas.width = window.innerWidth;
   render.canvas.height = window.innerHeight;
@@ -111,29 +116,26 @@ window.addEventListener('resize', () => {
 const button = document.querySelector('.startButton');
 button.addEventListener('click', () => {
   const introduction = document.getElementById('introduction');
-  introduction.style.display = 'block'; // Zeige den Einleitungstext an
-  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' }); // Scrolle nach unten
+  introduction.style.display = 'block';
+  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 });
 
 // Button-Barriere erstellen
 const buttonBarrierDiv = document.getElementById('button-barrier');
 const buttonBarrierRect = buttonBarrierDiv.getBoundingClientRect();
-
-// Barriere für die Bälle hinzufügen
 const buttonBarrier = Bodies.rectangle(
-  buttonBarrierRect.left + buttonBarrierRect.width / 2, // X-Position (Mitte des Divs)
-  buttonBarrierRect.top + buttonBarrierRect.height / 2, // Y-Position (Mitte des Divs)
-  buttonBarrierRect.width, // Breite des Divs
-  buttonBarrierRect.height, // Höhe des Divs
+  buttonBarrierRect.left + buttonBarrierRect.width / 2,
+  buttonBarrierRect.top + buttonBarrierRect.height / 2,
+  buttonBarrierRect.width,
+  buttonBarrierRect.height,
   {
-    isStatic: true, // Statisch (unbeweglich)
-    render: { fillStyle: 'transparent' }, // Unsichtbar
+    isStatic: true,
+    render: { fillStyle: 'transparent' },
   }
 );
-
 World.add(world, buttonBarrier);
 
-// Aktualisiere die Barriere-Position bei Fenstergrößenänderung
+// Barriere bei Resize aktualisieren
 window.addEventListener('resize', () => {
   const updatedRect = buttonBarrierDiv.getBoundingClientRect();
   Matter.Body.setPosition(buttonBarrier, {
@@ -147,13 +149,4 @@ window.addEventListener('resize', () => {
     { x: updatedRect.right, y: updatedRect.bottom },
     { x: updatedRect.left, y: updatedRect.bottom },
   ]);
-});
-
-window.addEventListener('resize', () => {
-  // Aktualisiere nur die Canvas- und Button-Barriere-Positionen
-  const updatedRect = buttonBarrierDiv.getBoundingClientRect();
-  Matter.Body.setPosition(buttonBarrier, {
-    x: updatedRect.left + updatedRect.width / 2,
-    y: updatedRect.top + updatedRect.height / 2,
-  });
 });
