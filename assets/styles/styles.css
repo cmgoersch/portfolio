@@ -65,8 +65,6 @@ h1 {
   }
 }
 
-
-
 .button-container {
   position: absolute;
   top: 60%;
@@ -99,6 +97,25 @@ h1 {
   border-radius: 5px;
   z-index: 3; 
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .startButton {
+  padding: 15px 15px;
+  font-size: 16px;
+  width: 150px;
+  font-weight: bold;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto;
+  border-radius: 5px;
+  z-index: 3; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 }
 
 .startButton:hover {
