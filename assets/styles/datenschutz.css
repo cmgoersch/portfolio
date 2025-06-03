@@ -115,13 +115,18 @@ nav {
 /* ===== Hauptinhalt: Datenschutztext ===== */
 .content {
   max-width: 800px;
-  margin: 20px;
-  /* margin-top: ; */
+  margin: 20px auto;
   padding: 20px;
   background-color: #161b22;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   line-height: 1.6;
+}
+
+@media (max-width: 890px) {
+.content {
+  margin: 20px;
+}
 }
 
 .content h1 {
