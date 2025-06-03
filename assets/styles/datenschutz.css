@@ -115,7 +115,8 @@ nav {
 /* ===== Hauptinhalt: Datenschutztext ===== */
 .content {
   max-width: 800px;
-  margin: 60px auto;
+  margin: 20px;
+  /* margin-top: ; */
   padding: 20px;
   background-color: #161b22;
   border-radius: 8px;
