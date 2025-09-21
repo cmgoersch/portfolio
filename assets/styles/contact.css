@@ -1,0 +1,194 @@
+/* ----- Grundlayout: Footer fixiert am unteren Rand ----- */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: Arial, sans-serif !important;
+  color: #c9d1d9 !important;
+  background: linear-gradient(to bottom, #3d444e, #0d1117) !important;
+  overflow-x: hidden !important;
+}
+
+main {
+  flex: 1 !important; /* schiebt Footer nach unten */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 2rem !important;
+  gap: 2rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ----- Einleitungstext in eigener Box ----- */
+.contact-intro {
+  width: 100% !important;
+  max-width: 700px !important;
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  padding: 2rem !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.contact-intro h2 {
+  color: #c9d1d9 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.contact-intro p {
+  color: #9ba5b1 !important;
+  margin-bottom: 0 !important;
+}
+
+.contact-intro p a {
+  color: #5c489b !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+}
+
+.contact-intro p a:hover {
+  text-decoration: underline !important;
+}
+
+/* Social Media Icons */
+.contact-intro .social-icons {
+  margin-top: 20px !important;
+  text-align: center !important;
+}
+
+.contact-intro .social-icon {
+  width: 40px !important;
+  height: 40px !important;
+  margin: 0 10px !important;
+  transition: transform 0.3s ease !important;
+  filter: brightness(0.8) !important;
+}
+
+.contact-intro .social-icon:hover {
+  transform: scale(1.1) !important;
+  filter: brightness(1) !important;
+}
+
+/* ----- Kontaktformular in eigener Box ----- */
+#contact {
+  width: 100% !important;
+  max-width: 700px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.contact-box {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  padding: 2rem !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.contact-box form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.contact-box form div {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}
+
+.contact-box form label {
+  color: #c9d1d9 !important;
+  font-weight: bold !important;
+  margin-bottom: 8px !important;
+  margin-top: 5px !important;
+  display: block !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+}
+
+.contact-box form input,
+.contact-box form textarea {
+  width: 100% !important;
+  padding: 12px !important;
+  border: 1px solid #30363d !important;
+  border-radius: 4px !important;
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+  box-sizing: border-box !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  resize: vertical !important;
+  position: relative !important;
+  z-index: auto !important;
+}
+
+/* Spezielle Regeln für das Message Textarea */
+.contact-box form textarea {
+  min-height: 120px !important;
+  resize: vertical !important;
+  line-height: 1.4 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Placeholder Styling */
+.contact-box form input::placeholder,
+.contact-box form textarea::placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+}
+
+.contact-box form input:focus,
+.contact-box form textarea:focus {
+  outline: none !important;
+  border: 2px solid #5c489b !important;
+  background-color: #161b22 !important;
+}
+
+.contact-box form button {
+  padding: 10px 20px !important;
+  background-color: #5c489b !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.contact-box form button:hover {
+  background-color: #4a3a7d !important;
+}
+
+/* ----- Footer ----- */
+.site-footer {
+  background-color: #161b22 !important;
+  color: #c9d1d9 !important;
+  text-align: center !important;
+  padding: 20px 10px !important;
+  font-size: 14px !important;
+  border-top: 1px solid #30363d !important;
+  margin-top: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.site-footer a {
+  color: #c9d1d9 !important;
+  margin: 0 8px !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.site-footer a:hover {
+  color: #5c489b !important;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Calle Goersch</title>
+  <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../assets/styles/menu.css" />
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
+  <link rel="stylesheet" href="../assets/styles/contact.css" />
+  <script src="../js/menu.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="menu">
+      <button id="burger-menu" onclick="openMenu()">☰</button>
+      <ul id="menu-items">
+        <li><a href="../index.html">Back to the bubbles</a></li>
+        <li><a href="about.html">About me</a></li>
+        <li><a href="work.html">My Work</a></li>
+        <li><a href="curriculum.html">Curriculum vitae</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div id="overlay-menu">
+        <button id="close-menu" onclick="closeMenu()">✖</button>
+        <ul>
+          <li><a href="../index.html" onclick="closeMenu()">Back to the bubbles</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About me</a></li>
+          <li><a href="work.html" onclick="closeMenu()">My Work</a></li>
+          <li><a href="curriculum.html" onclick="closeMenu()">Curriculum vitae</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Einleitungstext in eigener Box -->
+    <div class="contact-intro">
+      <h2>Get in Touch</h2>
+     <p>
+  I’d be happy to hear from you!<br><br>
+
+  Whether you’d like to discuss a project, explore an idea, hire me for your team, or simply connect - 
+  send me a message and I’ll respond as soon as possible.<br><br>
+        Prefer email?<br>
+        <a href="mailto:hey@cmgoersch.com"><strong>hey@cmgoersch.com</strong></a>
+      </p>
+      <p>Or one of these?</p>
+      
+      <!-- Social Media Icons -->
+      <div class="social-icons">
+        <a href="https://github.com/cmgoersch" target="_blank">
+          <img src="../assets/images/github.svg" alt="GitHub" class="social-icon">
+        </a>
+        <a href="https://www.linkedin.com/in/calle-goersch/" target="_blank">
+          <img src="../assets/images/linkedin.svg" alt="LinkedIn" class="social-icon">
+        </a>
+      </div>
+    </div>
+
+    <!-- Kontaktformular in eigener Box -->
+    <section id="contact">
+      <div class="contact-box">
+        <form action="https://formspree.io/f/xgvywred" method="POST">
+          <div>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+          </div>
+
+          <div>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+          </div>
+
+          <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your message to me :)" required></textarea>
+          </div>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Calle</p>
+    <p>
+      <a href="/views/impressum.html">Impressum</a> |
+      <a href="/views/datenschutz.html">Datenschutz</a>
+    </p>
+  </footer>
+</body>
+</html>
