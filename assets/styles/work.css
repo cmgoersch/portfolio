@@ -264,3 +264,13 @@ nav {
 .site-footer a:hover {
   color: #5c489b;
 }
+
+.introduction {
+  max-width: 700px;  
+  margin: 2rem auto; 
+  font-size: 1rem;  
+  line-height: 1.6;
+  text-align: center;   
+  color: #ffff;      
+
+}
